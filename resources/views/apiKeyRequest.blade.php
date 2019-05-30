@@ -8,9 +8,9 @@
 <script type="text/javascript">
     
     let hash_api = "http://hasherapi.westeurope.azurecontainer.io/hash/sha256/";
-    let email_check = "./users/email_in_use/";
-    let store_user = "./users/add";
-    let user_api = "./users/getAPI";
+    let email_check = "./email_in_use/";
+    let store_user = "./add";
+    let user_api = "./getAPI";
     
     function correctPassword()
     {
