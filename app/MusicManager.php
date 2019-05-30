@@ -364,7 +364,7 @@ class MusicManager {
         $soapWrapper->add('BreaksPlacer',function ($service)
         {
             $service
-                    ->wsdl('http://localhost:59176/BreakPlacer.asmx?WSDL')
+                    ->wsdl('https://lyricstranslator.azurewebsites.net/LyricsProcessor.asmx?WSDL')
                     ->trace(true)
                     ->classmap([BreakPlacerRequest::class]);
         });
@@ -382,7 +382,7 @@ class MusicManager {
         $soapWrapper->add('TranslatorEN2NL',function ($service)
         {
             $service
-                    ->wsdl("http://localhost:59176/BreakPlacer.asmx?WSDL")
+                    ->wsdl("https://lyricstranslator.azurewebsites.net/LyricsProcessor.asmx?WSDL")
                     ->trace(true)
                     ->classmap([TranslateEnglishToDutchRequest::class]);
         });
