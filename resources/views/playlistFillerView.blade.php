@@ -120,7 +120,7 @@
                         let artistHtml = "<a href=\"../../artists/" + artist_id +"\">" + artistname + "</a>";
                         let albumHtml = "<a href=\"../../albums/" + album_id +"\">" + albumname + "</a>";
                         let putSong = "<form><input type=\"button\" value=\"Add\" onclick=\"addSongToPlayList("+playlist_id+","+song_id+")\"></form>";
-                        let string = "<tr><td>Local database</td><td>"+songHtml+"</td><td>"+artistHtml+"</td><td>"+albumHtml+"</td></td><td>"+putSong+"</td></tr>";
+                        let string = "<tr><td>"+songHtml+"</td><td>"+artistHtml+"</td><td>"+albumHtml+"</td></td><td>"+putSong+"</td></tr>";
                         document.getElementById("results").innerHTML += string;
                     });
                 });
@@ -283,9 +283,15 @@
         <input type="submit" value="Done editing">
     </form>
 </div>
-<div id="currentPlaylist">
+
+<div>
+    <h5>Current playlist</h5>
+    <div id="currentPlaylist">
     
+    </div>
 </div>
+
+
 
 <p>
     Add songs to the playlist by searching and selecting items below.
@@ -310,23 +316,62 @@
 <div id="error_message">
     
 </div>
+<style type="text/css">
+/*Source: https://medium.com/@vembarrajan/html-css-tricks-scroll-able-table-body-tbody-d23182ae0fbc*/
+.fixed_header{
+    width: 95%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
 
-<div id="query_results" style="overflow-y:scroll">
-    <table id="results">
-        <tr>
-            <th>
-                Source
-            </th>
-            <th>
-                Title
-            </th>
-            <th>
-                Artist
-            </th>
-            <th>
-                Album
-            </th>
-        </tr>
+.fixed_header tbody{
+  display:block;
+  width: 100%;
+  overflow: auto;
+  height: 400px;
+}
+
+.fixed_header thead tr {
+   display: block;
+}
+
+.fixed_header thead {
+  background: black;
+  color:#fff;
+}
+
+.fixed_header td {
+  padding: 10px;
+  text-align: left;
+  width: 33%;
+}
+
+.fixed_header th{ 
+  padding: 10px;
+  text-align: left;
+  width: 5%;
+}
+
+</style>
+<br><br>
+<div id="query_results">
+    <table class="fixed_header">
+        <thead>
+            <tr>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Artist
+                </th>
+                <th>
+                    Album
+                </th>
+            </tr>
+        </thead>
+        <tbody id="results">
+            
+        </tbody>
     </table>
 </div>
 

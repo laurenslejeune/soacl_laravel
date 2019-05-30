@@ -2,8 +2,6 @@
 
 @section('titel',$name) 
 @section('header','Overview of the playlist ' . $name)
-@section('welkom','General information')
-
 
 <script type="text/javascript">
     
