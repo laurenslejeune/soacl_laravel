@@ -303,7 +303,7 @@
 .fixed_header td {
   padding: 5px;
   text-align: left;
-  width: 30%;
+  width: 27.5%;
 }
 
 .fixed_header th{ 
