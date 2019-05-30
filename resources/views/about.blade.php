@@ -26,6 +26,6 @@
     </ul>
     <br>
     <h4>MySQL Docker container</h4>
-    <ul><a href="https://github.com/laurenslejeune/soacl_mysql_container">Configuration</a></ul>
+    <ul><li><a href="https://github.com/laurenslejeune/soacl_mysql_container">Configuration</a></li></ul>
 </div>
 @stop
