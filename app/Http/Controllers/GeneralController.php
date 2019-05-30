@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Log;
 
 class GeneralController extends Controller
 {
-    const local_api_base = "http://127.0.0.1:8000/api";
+    const local_api_base = "http://laurenslaravelwebapp.azurewebsites.net/api";
     const use_local_api_key = true;
     const api_key = "25e384169d5e6e4b359747ef7e8932b7b38210ae87ed33c017891e07f610127b";
     
