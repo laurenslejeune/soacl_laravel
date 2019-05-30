@@ -219,7 +219,7 @@
         })
         .then(response => 
         {
-            let totalString =  "<table>";
+            let totalString =  "";
             
             //document.getElementById("currentPlaylist").innerHTML = "<table>";
             for(var i = 0;i<response.length; i++)
@@ -276,7 +276,42 @@
     
     window.onload = showCurrentPlaylist({!!$playlist_id!!});
 </script>
+<style type="text/css">
+/*Source: https://medium.com/@vembarrajan/html-css-tricks-scroll-able-table-body-tbody-d23182ae0fbc*/
+.fixed_header{
+    width: 95%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
 
+.fixed_header tbody{
+  display:block;
+  width: 100%;
+  overflow: auto;
+  height: 200px;
+}
+
+.fixed_header thead tr {
+   display: block;
+}
+
+.fixed_header thead {
+  background: black;
+  color:#fff;
+}
+
+.fixed_header td {
+  padding: 10px;
+  text-align: left;
+  width: 25%;
+}
+
+.fixed_header th{ 
+  padding: 10px;
+  text-align: left;
+  width: 7%;
+}
+</style>
 <div>
     <form method="get" action=" ../{{$playlist_id}}">
         
@@ -286,9 +321,27 @@
 
 <div>
     <h5>Current playlist</h5>
-    <div id="currentPlaylist">
-    
-    </div>
+    <table class="fixed_header">
+        <thead>
+            <tr>
+                <th>
+                    Song
+                </th>
+                <th>
+                    Artist
+                </th>
+                <th>
+                    Album
+                </th>
+                <th>
+                    Remove
+                </th>
+            </tr>
+        </thead>
+        <tbody id="currentPlaylist">
+            
+        </tbody>
+    </table>
 </div>
 
 
@@ -316,43 +369,7 @@
 <div id="error_message">
     
 </div>
-<style type="text/css">
-/*Source: https://medium.com/@vembarrajan/html-css-tricks-scroll-able-table-body-tbody-d23182ae0fbc*/
-.fixed_header{
-    width: 95%;
-    table-layout: fixed;
-    border-collapse: collapse;
-}
 
-.fixed_header tbody{
-  display:block;
-  width: 100%;
-  overflow: auto;
-  height: 400px;
-}
-
-.fixed_header thead tr {
-   display: block;
-}
-
-.fixed_header thead {
-  background: black;
-  color:#fff;
-}
-
-.fixed_header td {
-  padding: 10px;
-  text-align: left;
-  width: 33%;
-}
-
-.fixed_header th{ 
-  padding: 10px;
-  text-align: left;
-  width: 5%;
-}
-
-</style>
 <br><br>
 <div id="query_results">
     <table class="fixed_header">
