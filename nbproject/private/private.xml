@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/xampp/htdocs/mediamanager/app/MusicManager.php</file>
+            <file>file:/C:/xampp/htdocs/mediamanager/resources/views/searcher.blade.php</file>
+            <file>file:/C:/xampp/htdocs/mediamanager/routes/web.php</file>
+            <file>file:/C:/xampp/htdocs/mediamanager/app/Http/Controllers/GeneralController.php</file>
+            <file>file:/C:/xampp/htdocs/mediamanager/resources/views/about.blade.php</file>
+            <file>file:/C:/xampp/htdocs/mediamanager/resources/views/apiDocumentationView.blade.php</file>
+            <file>file:/C:/xampp/htdocs/mediamanager/routes/api.php</file>
+            <file>file:/C:/xampp/htdocs/mediamanager/resources/views/apiKeyRequest.blade.php</file>
+            <file>file:/C:/xampp/htdocs/mediamanager/.env</file>
+            <file>file:/C:/xampp/htdocs/mediamanager/resources/views/singlePlaylistView.blade.php</file>
+            <file>file:/C:/xampp/htdocs/mediamanager/app/Http/Controllers/PlaylistAPIController.php</file>
+        </group>
+    </open-files>
+</project-private>
