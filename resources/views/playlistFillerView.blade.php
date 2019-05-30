@@ -301,13 +301,13 @@
 }
 
 .fixed_header td {
-  padding: 10px;
+  padding: 5px;
   text-align: left;
   width: 25%;
 }
 
 .fixed_header th{ 
-  padding: 10px;
+  padding: 5px;
   text-align: left;
   width: 7%;
 }
