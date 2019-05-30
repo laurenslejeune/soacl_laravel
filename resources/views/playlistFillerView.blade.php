@@ -291,7 +291,7 @@
   height: 200px;
 }
 
-.fixed_header thead tbody tr {
+.fixed_header thead tr {
    display: block;
    width: 100%;
 }
