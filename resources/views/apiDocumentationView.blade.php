@@ -20,8 +20,8 @@
 <div>
     <h2>API Key</h2>
     <p>This API uses API keys for authenticantion. In order to be able to use its functionality, an API keys must be added to each request.
-    If you don't have an API key currently, create an account <a href="http://localhost/mediamanager/public/users/">here</a>. Users receive one API key.
-    If you have forgotten your API key, please retrieve it <a href="http://localhost/mediamanager/public/users/">here</a>.</p>
+    If you don't have an API key currently, create an account <a href="http://laurenslaravelwebapp.azurewebsites.net/users/">here</a>. Users receive one API key.
+    If you have forgotten your API key, please retrieve it <a href="http://laurenslaravelwebapp.azurewebsites.net/users/">here</a>.</p>
 </div>
 
 <div>

@@ -73,7 +73,7 @@
                     <a href="http://laurenslaravelwebapp.azurewebsites.net/api/documentation">API</a>
                   </li>
                   <li>
-                    <a href="http://laurenslaravelwebapp.azurewebsites.net/music">Searcher</a>
+                    <a href="http://laurenslaravelwebapp.azurewebsites.net/music/search">Searcher</a>
                   </li>
                 </ul>
 
