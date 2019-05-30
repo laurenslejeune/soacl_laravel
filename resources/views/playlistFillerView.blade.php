@@ -278,8 +278,12 @@
 </script>
 <style type="text/css">
 /*Source: https://medium.com/@vembarrajan/html-css-tricks-scroll-able-table-body-tbody-d23182ae0fbc*/
+.fixed_header table{
+    width: 100%;
+    table-layout: fixed;
+}
 .fixed_header{
-    width: 95%;
+    width: 100%;
     table-layout: fixed;
     border-collapse: collapse;
 }
