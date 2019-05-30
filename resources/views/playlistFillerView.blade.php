@@ -385,6 +385,9 @@
                 <th>
                     Album
                 </th>
+                <th>
+                    Add
+                </th>
             </tr>
         </thead>
         <tbody id="results">
