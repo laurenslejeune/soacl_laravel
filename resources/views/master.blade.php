@@ -64,16 +64,16 @@
 
                 <ul class="list-unstyled">
                   <li>
-                    <a href="http://localhost/mediamanager/public/music">Home</a>
+                    <a href="http://laurenslaravelwebapp.azurewebsites.net/music">Home</a>
                   </li>
                   <li>
-                    <a href="http://localhost/mediamanager/public/about">About</a>
+                    <a href="http://laurenslaravelwebapp.azurewebsites.net/about">About</a>
                   </li>
                   <li>
-                    <a href="http://127.0.0.1:8000/api/documentation">API</a>
+                    <a href="http://laurenslaravelwebapp.azurewebsites.net/api/documentation">API</a>
                   </li>
                   <li>
-                    <a href="http://localhost/mediamanager/public/music/search">Searcher</a>
+                    <a href="http://laurenslaravelwebapp.azurewebsites.net/music">Searcher</a>
                   </li>
                 </ul>
 
@@ -88,16 +88,16 @@
 
                 <ul class="list-unstyled">
                   <li>
-                    <a href="http://localhost/mediamanager/public/music/songs">Songs</a>
+                    <a href="http://laurenslaravelwebapp.azurewebsites.net/music/songs">Songs</a>
                   </li>
                   <li>
-                    <a href="http://localhost/mediamanager/public/music/albums">Albums</a>
+                    <a href="http://laurenslaravelwebapp.azurewebsites.net/music/albums">Albums</a>
                   </li>
                   <li>
-                    <a href="http://localhost/mediamanager/public/music/artists">Artists</a>
+                    <a href="http://laurenslaravelwebapp.azurewebsites.net/music/artists">Artists</a>
                   </li>
                   <li>
-                    <a href="http://localhost/mediamanager/public/music/playlists">Playlists</a>
+                    <a href="http://laurenslaravelwebapp.azurewebsites.net/music/playlists">Playlists</a>
                   </li>
                 </ul>
 
