@@ -14,10 +14,18 @@ class TranslationController extends Controller
         //First: get the lyrics to translate :
         $text = Song::find($id)->lyrics;
         
-        //Next: translate the text:
-        $translation = MusicManager::translateLyrics($text);
+        if($text != "")
+        {
+            //Next: translate the text:
+            $translation = MusicManager::translateLyrics($text);
+
+            //Finally: Add break points (if necessary):
+            return MusicManager::translatedLyricsToHTML($translation);
+        }
+        else
+        {
+            return "";
+        }
         
-        //Finally: Add break points (if necessary):
-        return MusicManager::translatedLyricsToHTML($translation);
     }
 }
