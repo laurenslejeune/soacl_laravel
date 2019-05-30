@@ -381,7 +381,7 @@
         <thead>
             <tr>
                 <th>
-                    Title
+                    Song
                 </th>
                 <th>
                     Artist
@@ -390,7 +390,7 @@
                     Album
                 </th>
                 <th>
-                    Add
+                    Add song
                 </th>
             </tr>
         </thead>
