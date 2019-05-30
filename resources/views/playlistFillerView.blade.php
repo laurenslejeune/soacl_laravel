@@ -291,8 +291,9 @@
   height: 200px;
 }
 
-.fixed_header thead tr {
+.fixed_header thead tbody tr {
    display: block;
+   width: 100%;
 }
 
 .fixed_header thead {
@@ -303,13 +304,13 @@
 .fixed_header td {
   padding: 5px;
   text-align: left;
-  /*width: 27.5%;*/
+  width: 25%;
 }
 
 .fixed_header th{ 
   padding: 5px;
   text-align: left;
-  /*width: 7%;*/
+  width: 7%;
 }
 </style>
 <div>
