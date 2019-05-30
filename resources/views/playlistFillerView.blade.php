@@ -314,7 +314,7 @@
 .fixed_header th{ 
   padding: 5px;
   text-align: left;
-  width: 9%;
+  width: 25%;
 }
 </style>
 <div>
