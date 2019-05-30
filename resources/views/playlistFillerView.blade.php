@@ -75,6 +75,7 @@
         })
         .then(response => 
         {
+            document.getElementById("results").innerHTML = "";
             for(var i = 0;i<response.length;i++)
             {
                 let title = response[i].title;
