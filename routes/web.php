@@ -13,21 +13,19 @@
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/music/');
+    //return view('welcome');
 });
 
 //Waarom werkte dit niet:
 //1) Trailing slashes mogen niet in eeb POST request
 //2) CSRF token moet toegevoegd worden met de header X-Csrf-Token
+/*
 Route::post('/test',function()
 {
     return 'aap';
 });
-
-Route::put('/test/{id}',function(Request $request,$id)
-{
-    return $id;
-});
+*/
 
 //Route::get('/','LastFMController@index');
 //Route::get('/test','LastFMController@index');
