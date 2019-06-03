@@ -192,6 +192,7 @@ class SongController extends Controller
             $song_obj->youtube_id = '';
             $song_obj->save();
             
+            $lyrics = $song_obj->lyrics;
             $words = NULL;
             $sentiment = NULL;
             $analysisAvailable = false;
