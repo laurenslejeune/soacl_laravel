@@ -68,6 +68,10 @@ class ArtistController extends Controller
             
             return view('wikipediaNotFound')->with('id',$id);
         }
+        else if(sizeof($wikipedia_response) == 0)
+        {
+            return view('wikipediaNotFound')->with('id',$id);
+        }
         else
         {
             //return $wikipedia_response[1][1];
