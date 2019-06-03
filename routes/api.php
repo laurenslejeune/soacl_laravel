@@ -22,8 +22,17 @@ Route::get('/documentation',function()
     return view('apiDocumentationView');
 });
 
-//Route::get('/test/api_key={apikey}', 'GeneralController@testAPIKey')->middleware('APIKey');
-
+/*
+ * General documentation for the API search functions:
+ * For the Classes Album, Artist and Song, a number of search functions are defined.
+ * By providing the search parameters in the url of the route and using a GET HTTP request,
+ * the database is searched for the specified items. The function used in the controller class is named logically:
+ * Example: search_artist in the class Song searches for all songs with the provided artist
+ * Example: search_song_album in the class Artist searches for an artist that has created the given album, containing the given song
+ * Each possible order of search parameters in the url is supported:
+ * "songs/song/A/artist/B" returns the same as "songs/artist/B/song/A"
+ */
+//Modify the $use_api_key parameter if you wish to enable/disable the use of the API key
 $use_api_key = true;
 if($use_api_key)
 {
@@ -50,10 +59,6 @@ if($use_api_key)
     Route::get('/artists' . $additional_url,'ArtistAPIController@index')->middleware('APIKey');
     Route::post('/artists' . $additional_url,'ArtistAPIController@store')->middleware('APIKey');
     Route::get('/artists/{id}' . $additional_url,'ArtistAPIController@show')->middleware('APIKey');
-    //Route::resource('/playlists' . $additional_url,'PlaylistAPIController')/*->middleware('APIKey')*/;
-    //Route::resource('/albums'/* . $additional_url*/,'AlbumAPIController')/*->middleware('APIKey')*/;
-    //Route::resource('/songs'/* . $additional_url*/,'SongAPIController')/*->middleware('APIKey')*/;
-    //Route::resource('/artists'/* . $additional_url*/,'ArtistAPIController')/*->middleware('APIKey')*/;
     
     //General songs API functions
     //Specific search options

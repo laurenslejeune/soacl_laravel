@@ -6,17 +6,23 @@ use App\MusicManager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
+/**
+ * Class used for adding API keys to JS requests
+ */
 class GeneralController extends Controller
 {
+    /*
+     * Change these parameters to change the functioning of the class:
+     * Each method simply add the API key to the request url, if applicable
+     * The below constants allow for modifying the used API key and whether it
+     * is used.
+     * No individual documentation will be provided for the methods, as they all
+     * do essentially the same. Only the used HTTP request sometimes varies.
+     */
     const local_api_base = "http://laurenslaravelwebapp.azurewebsites.net/api";
     const use_local_api_key = true;
     const api_key = "25e384169d5e6e4b359747ef7e8932b7b38210ae87ed33c017891e07f610127b";
-    
-    public function testAPIKey()
-    {
-        return "de api key werkt";
-    }
-    
+        
     public function translation_en_nl($id)
     {
         $final_url = self::local_api_base . '/translate/en-nl/' . $id;
@@ -39,7 +45,7 @@ class GeneralController extends Controller
         $final_url = "http://ws.audioscrobbler.com/2.0?" . $url . "&api_key=" . $api_key;
         
         //Optional: log the final url for debugging
-        Log::info("LastFM final url = " . $final_url);
+        //Log::info("LastFM final url = " . $final_url);
         
         //Return the json response as sent by LastFM, leave any additional editing to the JS
         return response(MusicManager::curl($final_url), 200)->header('Content-Type', 'application/json');
@@ -55,7 +61,7 @@ class GeneralController extends Controller
             $final_url .= "/api_key=" . self::api_key;
         }
         
-        Log::info("POST song:".$final_url);
+        //Log::info("POST song:".$final_url);
         
         $album = $request->album;
         $artist = $request->artist;
@@ -74,7 +80,7 @@ class GeneralController extends Controller
             $final_url .= "/api_key=" . self::api_key;
         }
         
-        Log::info("POST ".$final_url);
+        //Log::info("POST ".$final_url);
         
         $album = $request->album;
         $artist = $request->artist;
@@ -93,7 +99,7 @@ class GeneralController extends Controller
             $final_url .= "/api_key=" . self::api_key;
         }
         
-        Log::info("POST ".$final_url);
+        //Log::info("POST ".$final_url);
         
         $artist = $request->artist;
         $img_url = $request->img_url;
@@ -111,7 +117,7 @@ class GeneralController extends Controller
             $final_url .= "/api_key=" . self::api_key;
         }
         
-        Log::info("PUT playlist " . $id . ", type: " . $request->type . ", song id: " . $request->song_id);
+        //Log::info("PUT playlist " . $id . ", type: " . $request->type . ", song id: " . $request->song_id);
         
         $song_id = $request->song_id;
         $type = $request->type;
@@ -128,7 +134,7 @@ class GeneralController extends Controller
             $final_url .= "/api_key=" . self::api_key;
         }
         
-        Log::info($final_url);
+        //Log::info($final_url);
         return response(MusicManager::curl($final_url), 200)->header('Content-Type', 'application/json');
     }
     
@@ -141,7 +147,7 @@ class GeneralController extends Controller
             $final_url .= "/api_key=" . self::api_key;
         }
         
-        Log::info($final_url);
+        //Log::info($final_url);
         return response(MusicManager::curl_delete($final_url), 200)->header('Content-Type', 'application/json');
     }
     
@@ -154,7 +160,7 @@ class GeneralController extends Controller
             $final_url .= "/api_key=" . self::api_key;
         }
         
-        Log::info($final_url);
+        //Log::info($final_url);
         return response(MusicManager::curl($final_url), 200)->header('Content-Type', 'application/json');
     }
     
@@ -168,7 +174,7 @@ class GeneralController extends Controller
             $final_url .= "/api_key=" . self::api_key;
         }
         
-        Log::info($final_url);
+        //Log::info($final_url);
         return response(MusicManager::curl($final_url), 200)->header('Content-Type', 'application/json');
     }
     
@@ -181,7 +187,7 @@ class GeneralController extends Controller
             $final_url .= "/api_key=" . self::api_key;
         }
         
-        Log::info($final_url);
+        //Log::info($final_url);
         return response(MusicManager::curl($final_url), 200)->header('Content-Type', 'application/json');
     }
     
@@ -194,7 +200,7 @@ class GeneralController extends Controller
             $final_url .= "/api_key=" . self::api_key;
         }
         
-        Log::info($final_url);
+        //Log::info($final_url);
         return response(MusicManager::curl($final_url), 200)->header('Content-Type', 'application/json');
     }
     
@@ -207,7 +213,7 @@ class GeneralController extends Controller
             $final_url .= "/api_key=" . self::api_key;
         }
         
-        Log::info("Adding songs to album " . $id);
+        //Log::info("Adding songs to album " . $id);
         return response(MusicManager::curl($final_url), 200)->header('Content-Type', 'application/json');
     }
     
@@ -221,7 +227,7 @@ class GeneralController extends Controller
             $final_url .= "/api_key=" . self::api_key;
         }
         
-        Log::info($final_url);
+        //Log::info($final_url);
         return response(MusicManager::curl($final_url), 200)->header('Content-Type', 'application/json');
     }
     
@@ -234,7 +240,7 @@ class GeneralController extends Controller
             $final_url .= "/api_key=" . self::api_key;
         }
         
-        Log::info($final_url);
+        //Log::info($final_url);
         return response(MusicManager::curl($final_url), 200)->header('Content-Type', 'application/json');
     }
     
@@ -248,7 +254,7 @@ class GeneralController extends Controller
             $final_url .= "/api_key=" . self::api_key;
         }
         
-        Log::info($final_url);
+        //Log::info($final_url);
         return response(MusicManager::curl($final_url), 200)->header('Content-Type', 'application/json');
     }
     
@@ -510,7 +516,7 @@ class GeneralController extends Controller
             //With API key:
             $final_url .= "/api_key=" . self::api_key;
         }
-        Log::info($final_url);
+        //Log::info($final_url);
         return response(MusicManager::curl($final_url), 200)->header('Content-Type', 'application/json');
     }
     

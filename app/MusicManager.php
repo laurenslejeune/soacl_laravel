@@ -135,82 +135,6 @@ class MusicManager {
         return json_decode($response);
     }
     
-    /*
-    static function getSongsFromWeb($title,$api_key)
-    {
-        $url = 'http://ws.audioscrobbler.com/2.0/?method=track.search&track=' . $title . '&api_key=' . $api_key.'&format=json';
-        $json_return = json_decode(MusicManager::curl($url));
-        $songlist = $json_return->results->trackmatches->track;
-        
-        //return $songlist;
-        //Create an array with all the songs
-        $songObjectList = array();
-        
-        foreach($songlist as $song)
-        {
-            $songObject = new Song();
-            $songObject->title = $song->name;
-            $songObject->artist_id = MusicManager::getArtistId($song->artist, $api_key);
-            if($songObject->artist_id > -1)
-            {
-                $songObject->album_id = MusicManager::getAlbumId($song->name,$song->artist, $api_key);
-                $songObject->youtube_url = 'to be implemented';
-                $songObject->lyrics = 'to be implemented';
-            
-                if($songObject->album_id > -1)
-                {
-                    $existingSong = Song::where(['title'=>$songObject->title,'artist_id'=>$songObject->artist_id,'album_id'=>$songObject->album_id])->first();
-                    if($existingSong == NULL)
-                    {
-                        $songObject->save();
-                    }
-                    else
-                    {
-                        $songObject->id = $existingSong->id;
-                    }
-                    array_push($songObjectList, $songObject);
-                }
-            }
-            
-        }
-        return $songObjectList;
-        
-    }
-    
-    static function getSongsFromWebWithArtist($title,$artist,$api_key)
-    {
-        $url = 'http://ws.audioscrobbler.com/2.0/?method=track.search&track='.$title.'&artist='.$artist.'&api_key='.$api_key.'&format=json';
-        $json_return = json_decode(MusicManager::curl($url));
-        
-    }
-    
-    static function getArtistId($name,$api_key)
-    {
-        $artist = Artist::where('name',$name)->first();
-        if($artist == NULL)
-        {
-            $addition = MusicManager::addArtist($name,$api_key);
-            if($addition)
-            {
-                $addedArtist = Artist::where('name',$name)->first();
-                if ($addedArtist != NULL)
-                {
-                    return $addedArtist->id;
-                }
-                else
-                {
-                    return -1;
-            
-                }
-            }
-            return -1;
-        }
-        else
-        {
-            return $artist->id;
-        }
-    }
-    */
    
     /**
      * Add an artist to the database
@@ -253,7 +177,7 @@ class MusicManager {
      * Add an album to the databse
      * @param type $name Name of the album
      * @param type $artist_id Id of the artist that made the album
-     * @return boolean
+     * @return TRUE if the album was succesfully added
      */
     static function addAlbum($name, $artist_id)
     {
@@ -267,6 +191,12 @@ class MusicManager {
         return FALSE;
     }
     
+    /**
+     * Store an album, with the artist of the album and an image of the album provided
+     * @param string $album Name of the album
+     * @param int $artist_id Id of the artist that made the album
+     * @param string $img_url Url of the image
+     */
     static function addAlbumWithImageAndArtist($album, $artist_id, $img_url)
     {
         
@@ -286,22 +216,12 @@ class MusicManager {
         }
     }
     
-    static function addAlbum2($name,$artist,$img_url,$artist_id,$api_key)
-    {
-        //$url ='/2.0/?method=album.getinfo&album='.$name.'&artist='.$artist.'&api_key='.$api_key.'&format=json';
-        //$json_return = json_decode(MusicManager::curl($url));
-        
-        //$album_url = $json_return->album;
-        
-        $album = new Album();
-        $album->name = $name;
-        $album->artist_id = $artist_id;
-        $album->img_url = $img_url;
-        $album->save();
-        
-        
-    }
-    
+    /**
+     * Try to get the lyrics of a song from chartlyrics.com
+     * @param string $song Title of the song
+     * @param string $artist Name of the artist
+     * @return string The lyrics if possible, or an empty string
+     */
     static function getLyrics($song, $artist)
     {
         $soapWrapper = new SoapWrapper();
@@ -336,23 +256,13 @@ class MusicManager {
         
     }
     
+    /**
+     * Transform line breaks in the given lyrics into HTML breaks
+     * @param string $lyrics Lyrics to add HTML breaks to
+     * @return string Lyrics with HTML breaks
+     */
     static function lyricsToHTML($lyrics)
     {
-        /*
-        $soapWrapper = new SoapWrapper();
-        $soapWrapper->add('BreaksPlacer',function ($service)
-        {
-            $service
-                    ->wsdl('http://localhost:59176/BreakPlacer.asmx?WSDL')
-                    ->trace(true)
-                    ->classmap([BreakPlacerRequest::class]);
-        });
-        
-        $response = $soapWrapper->call('BreaksPlacer.TransformLineBreaks',[new BreakPlacerRequest($lyrics)]);
-        
-        //Extract the lyrics from the response
-        return $response->TransformLineBreaksResult;
-        */
         return preg_replace( "/\r|\n/", "<br>", $lyrics);
     } 
     
@@ -405,10 +315,7 @@ class MusicManager {
         $query = $artist." ".$song; 
         $query = str_replace(" ","%20",$query);
         $api_key = "AIzaSyB5gEyBbMqLJABP1PgfHycdTwHmTHCkpBI";
-        //nickelback
         $url = "https://www.googleapis.com/youtube/v3/search?part=id,snippet&fields=items(id,snippet(title,description,thumbnails))&q=".$query."&type=video&key=".$api_key."&maxResults=5";
-        //$url = "http://127.0.0.1:8000/api/songs";
-        //$url = "https://www.googleapis.com/youtube/v3/search?part=id,snippet&fields=items(id,snippet(title,description,thumbnails))&q=Nickelback%20How%20You%20Remind%20Me&type=video&key=AIzaSyB5gEyBbMqLJABP1PgfHycdTwHmTHCkpBI&maxResults=5";
         $curl_response = MusicManager::curl($url);
         $response = json_decode($curl_response);
         return $response->items;
@@ -468,6 +375,13 @@ class MusicManager {
         $song_object->save();
     }
     
+    /**
+     * Check if a song is stored in the database
+     * @param string $song Name of the song
+     * @param string $artist Name of the artist
+     * @param string $album Name of the album
+     * @return boolean TRUE if the song is stored in the database
+     */
     static function isSongInDatabase($song, $artist, $album)
     {
         
@@ -492,9 +406,9 @@ class MusicManager {
     }
     
     /**
-     * Check is an artist is stored in the database and already has an image associated with him
-     * @param type $artist
-     * @return type
+     * Check is an artist is stored in the database and already has an image associated with them
+     * @param string $artist Name of the artist
+     * @return TRUE if the artist is in the database and has an image url
      */
     static function isArtistInDatabaseAndHasImage($artist)
     {
@@ -503,6 +417,11 @@ class MusicManager {
         return $status;
     }
     
+    /**
+     * Check is an album is stored in the database and already has an image associated with it
+     * @param string $artist Name of the album
+     * @return TRUE if the album is in the database and has an image url
+     */
     static function isAlbumInDatabaseAndHasImage($album, $artist_id)
     {
         $number = Album::where('name','=',$album)->where('artist_id','=',$artist_id)->where('img_url','not','')->count();

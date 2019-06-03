@@ -8,7 +8,11 @@ use App\Song;
 class TranslationController extends Controller
 {
     
-    
+    /**
+     * Get the translation of the lyrics of the given song
+     * @param int $id The id of the given song
+     * @return string The translation of the song's lyrics, if applicable
+     */
     public function translateEnglishToDutchHtml($id)
     {
         //First: get the lyrics to translate :
