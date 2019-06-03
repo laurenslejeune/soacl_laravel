@@ -426,6 +426,13 @@ class MusicManager {
         return json_decode(MusicManager::curl($url))->items[0]->player->embedHtml;
     }
     
+    /**
+     * For the given information, add a song to the database. If the artist or
+     * album are not stored in the database, they will be added as well
+     * @param string $title Title of the song
+     * @param string $artist Name of the artist
+     * @param string $album Name of the album
+     */
     static function addSong($title, $artist, $album)
     {
         $artist_object = Artist::where('name','=',$artist)->first();
