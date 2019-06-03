@@ -6,9 +6,11 @@
 
 <script type="text/javascript">
     let local_api = "../../add_api_key/local/";
-    //let local_api = "http://127.0.0.1:8000/api/";
-    //let local_web = "http://localhost/mediamanager/public/music/songs/";
     let local_web = "../songs/";
+    
+    /**
+     * Add songs to the album by search for any possible additions (that have not been included as of right now).
+     */
     function addSongs()
     {
         let album_id = {!!$album_id!!};

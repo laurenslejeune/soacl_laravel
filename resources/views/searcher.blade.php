@@ -854,7 +854,7 @@
 <div>
     <h5>Instruction</h5>
     <p>Search online for songs, artists and albums by specifying the "Last.fm" source. Due to the implementation of Last.fm, only the following search
-    operations are implemented</p>
+    operations are implemented:</p>
     <p>Searching for songs:</p>
     <ul>
         <li>Song + Artist</li>
@@ -870,7 +870,7 @@
         <li>Song + Artist</li>
         <li>Album</li>
     </ul>
-    <p>Searching the local database can use any combination of search parameters for songs, artists and albums</p>
+    <p>Note that selecting "Save search results" saves all searched songs to the local database.<br>Searching the local database can use any combination of search parameters for songs, artists and albums</p>
 </div>
 <p>
     If only one song corresponding to the given title is in the database, it will be returned. Otherwise, a list of possible songs will be returned.

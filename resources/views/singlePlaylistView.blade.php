@@ -8,44 +8,10 @@
     let local_api = "../../add_api_key/local/";
     let local_web = "../";
     
-    //let local_api = "http://127.0.0.1:8000/api/";
-    //let local_web ="http://localhost/mediamanager/public/music/";
-    
-    /*
-    function playVideos()
-    {
-        let playlist_id = {!!$playlist_id!!};
-        let url = local_api + "playlists/" + playlist_id;
-        fetch(url).then(response=>
-        {
-            if(response.ok)
-            {
-                console.log(response);
-                return response.json();
-            }
-            else
-            {
-                console.log(response);
-                return Promise.reject("Local database data not found");
-            }
-        })
-        .then(response => 
-        {
-            let id_list = "";
-            for(var i = 0;i<response.length;i++)
-            {
-                let youtube_id = response[i].youtube_id;
-                if(youtube_id !== "")
-                {
-                    id_list+=youtube_id;
-                }
-            }
-            let iframe = "<iframe width=\"720\" height=\"405\" src=https://www.youtube.com/embed/"+id_list[0]+"?playlist=\""+id_list+"?autoplay=1\"frameborder=\"0\" allowfullscreen>";
-            
-            document.getElementById("playvideos").innerHTML = iframe;
-        });
-    }
-    */
+    /**
+     * Collect the youtube ids for all songs in this playlist and combine them into a youtube playlist
+     * that will be played on repeat.
+     */
     function playVideos()
     {
         let playlist_id = {!!$playlist_id!!};
@@ -91,6 +57,9 @@
         });
     }
     
+    /**
+    * Method for showing the current playlist
+     */
     function showCurrentPlaylist()
     { 
         let playlist_id = {!!$playlist_id!!};
@@ -110,9 +79,7 @@
         })
         .then(response => 
         {
-            //let totalString =  "<table>";
             let totalString = '';
-            //document.getElementById("currentPlaylist").innerHTML = "<table>";
             for(var i = 0;i<response.length; i++)
             {
                 let title = response[i].title;
@@ -133,7 +100,6 @@
                                 
                 let string = "<tr><td>"+song_html+"</td><td>"+artist_html+"</td><td>"+album_html+"</td></tr>";
                 totalString += string;
-                //document.getElementById("currentPlaylist").innerHTML += string;
             }
             document.getElementById("songs").innerHTML = totalString;
         });

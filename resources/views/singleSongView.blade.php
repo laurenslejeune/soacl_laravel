@@ -13,7 +13,10 @@
 <script type="text/javascript">
     
     let local_api = "../../add_api_key/local/";
-    //let local_api = "http://127.0.0.1:8000/api/";
+
+    /**
+     * Toggle the lyrics between English and Dutch
+     */
     function toggleTranslation()
     {
         if(document.getElementById("translated_lyrics").innerHTML === "")
@@ -37,9 +40,11 @@
         }
     }
         
+    /**
+     * For the English lyrics, get the translation to Dutch
+     */
     function getTranslationEnglishToDutch()
     {
-        //let text = document.getElementById("lyrics").innerHTML;
         let url = local_api + "translate/en-nl/" + {!!$song_obj->id!!};
         
         fetch(url).then(response=>
