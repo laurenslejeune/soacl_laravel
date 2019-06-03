@@ -38,7 +38,8 @@
         })
         .then(response => 
         {
-            location.reload(); 
+            //location.reload();
+            window.location.reload(true);
         });
     }
     
