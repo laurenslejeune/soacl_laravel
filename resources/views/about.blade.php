@@ -27,5 +27,18 @@
     <br>
     <h4>MySQL Docker container</h4>
     <ul><li><a href="https://github.com/laurenslejeune/soacl_mysql_container">Configuration</a></li></ul>
+    <br>
+    <h4>Used services</h4>
+    <h5>REST</h5>
+    <ul>
+        <li><a href="https://www.last.fm/api">LastFM</a></li>
+        <li><a href="https://developers.google.com/youtube/v3/">Youtube</a></li>
+        <li><a href="https://en.wikipedia.org/w/api.php">Wikipedia</a></li>
+        <li><a href="https://translate.yandex.com">Yandex translation</a></li>
+    </ul>
+    <h5>SOAP</h5>
+    <ul>
+        <li><a href="http://api.chartlyrics.com/apiv1.asmx">Chartlyrics</a></li>
+    </ul>
 </div>
 @stop

@@ -30,13 +30,14 @@ class MusicManager {
     public $artists;
     //put your code here
     
+    /**
+     * Function to send a DELETE HTTP request to a given location
+     * @param string $url: The url to send the request to
+     * @return The response to the DELETE request
+     */
     static function curl_delete($url)
     {
         $curl = curl_init($url); 
-        /*$curl_post_data = array( 
-            'email' => $Email, 
-            'password' => $Paswoord 
-        );*/ 
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); 
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($curl, CURLOPT_HTTPHEADER, array( 
@@ -48,13 +49,14 @@ class MusicManager {
         return $curl_response;
     }
     
+    /**
+     * Function to send a PUT HTTP request to a given location
+     * @param string $url: The url to send the request to
+     * @return The response to the PUT request
+     */
     static function curl_put($url, $data_array)
     {
         $curl = curl_init($url); 
-        /*$curl_post_data = array( 
-            'email' => $Email, 
-            'password' => $Paswoord 
-        );*/ 
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); 
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data_array));
@@ -67,13 +69,14 @@ class MusicManager {
         return $curl_response;
     }
     
+    /**
+     * Function to send a POST HTTP request to a given location
+     * @param string $url: The url to send the request to
+     * @return The response to the POST request
+     */
     static function curl_post($url, $json)
     {
         $curl = curl_init($url); 
-        /*$curl_post_data = array( 
-            'email' => $Email, 
-            'password' => $Paswoord 
-        );*/ 
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); 
         curl_setopt($curl, CURLOPT_POST, true); 
         curl_setopt($curl, CURLOPT_POSTFIELDS, $json); 
@@ -86,18 +89,16 @@ class MusicManager {
         return $curl_response;
     }
     
+    /**
+     * Function to send a GET HTTP request to a given location
+     * @param string $url: The url to send the request to
+     * @return The response to the GET request
+     */
     static function curl($url)
     {
-        //$url = 'http://ws.audioscrobbler.com/2.0/?method=album.getInfo&api_key=1c29722debda9b327250154f911004b6&artist=Nickelback&album=Silver&format=json';
-        //Log::info($url);
         $curl = curl_init($url); 
-        /*$curl_post_data = array( 
-            'email' => $Email, 
-            'password' => $Paswoord 
-        );*/ 
+
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); 
-        //curl_setopt($curl, CURLOPT_POST, true); 
-        //curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($curl_post_data)); 
         curl_setopt($curl, CURLOPT_HTTPHEADER, array( 
             'Accept: application/json', 
             'Content-Type: application/json' 
@@ -107,17 +108,24 @@ class MusicManager {
         return $curl_response;
     }
     
+    /**
+     * Send the given lyrics to the lyrics analyzer API for analysis.
+     * @param string $lyrics: The lyrics to be analyzed
+     * @return JSON object containing the lyrics analysis
+     */
     static function getLyricsAnalysis($lyrics)
     {
-        //$ip = "52.137.63.124";
-        //For documentation, please refer to http://lyricsanalyzerapi.westeurope.azurecontainer.io/documentation/
-        
+        //For documentation, please refer to http://lyricsanalyzerapi.westeurope.azurecontainer.io/documentation
         $url = "http://lyricsanalyzerapi.westeurope.azurecontainer.io/analysis/". rawurlencode($lyrics)."/10";
-        //$url = "http://" . $ip . "/analysis/". rawurlencode($lyrics)."/10";
         
         return $response = json_decode(MusicManager::curl($url));
     }
     
+    /**
+     * Get Wikipedia search results for a given artist
+     * @param string $artist The name of the artist
+     * @return JSON response from Wikipedia
+     */
     static function setWikipediaInformation($artist)
     {
         $url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search='.rawurlencode($artist->name) . '&format=json';
@@ -127,6 +135,7 @@ class MusicManager {
         return json_decode($response);
     }
     
+    /*
     static function getSongsFromWeb($title,$api_key)
     {
         $url = 'http://ws.audioscrobbler.com/2.0/?method=track.search&track=' . $title . '&api_key=' . $api_key.'&format=json';
@@ -174,32 +183,7 @@ class MusicManager {
         $json_return = json_decode(MusicManager::curl($url));
         
     }
-    /*
-    static function addAlbums($artist,$api_key)
-    {
-        $url = "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist={$artist}&api_key={$api_key}&format=json";
-        $json_return = json_decode(MusicManager::curl($url));
-        
-        $albums = $json_return->topalbums->album;
-        
-        foreach($albums as $album)
-        {
-            $newAlbum = new Album();
-            $newAlbum->name = $album->name;
-            //$newAlbum->img_url = $album->image[0];
-            $newAlbum->img_url = 'urls uitlezen werkt nog niet :(';
-            $newAlbum->artist_id = MusicManager::getArtistId($artist,$api_key);
-            //If the album has not been stored in the database yet, store it
-            $oldAlbum = Album::where(['name'=>$newAlbum->name,
-                                      'artist_id'=>$newAlbum->artist_id,
-                                      'img_url'=>$newAlbum->img_url])->first();
-            if($oldAlbum == NULL)
-            {
-                $newAlbum->save();
-            }
-        }
-    }
-    */
+    
     static function getArtistId($name,$api_key)
     {
         $artist = Artist::where('name',$name)->first();
@@ -226,8 +210,12 @@ class MusicManager {
             return $artist->id;
         }
     }
-    
+    */
    
+    /**
+     * Add an artist to the database
+     * @param string $name The name of the artist to be added.
+     */
     static function addArtist($name)
     {
         $artist = new Artist();
@@ -235,9 +223,14 @@ class MusicManager {
         $artist->wikipedia_url = '';
         $artist->img_url = '';
         $artist->save();
-        return TRUE;
     }
     
+    /**
+     * Add an artist with url to a corresponding image to the database. If the
+     * artist already exists, simply add the image to that artist.
+     * @param string $name The name of the artist to be added.
+     * @param string $img_url The url to the corresponding image
+     */
     static function addArtistWithImage($name, $img_url)
     {
         $artist = Artist::where('name','=',$name)->first();
@@ -256,7 +249,12 @@ class MusicManager {
         }
     }
     
-    
+    /**
+     * Add an album to the databse
+     * @param type $name Name of the album
+     * @param type $artist_id Id of the artist that made the album
+     * @return boolean
+     */
     static function addAlbum($name, $artist_id)
     {
         
@@ -375,9 +373,13 @@ class MusicManager {
         return $response->TransformLineBreaksResult;
     }
     
+    /**
+     * Translate the given lyrics using the C# translation API
+     * @param string $lyrics Lyrics to be translated
+     * @return string Translated lyrics
+     */
     static function translateLyrics($lyrics)
     {
-        //$wsdl = "http://localhost:59176/BreakPlacer.asmx?WSDL";
         $soapWrapper = new SoapWrapper();
         $soapWrapper->add('TranslatorEN2NL',function ($service)
         {
@@ -389,15 +391,15 @@ class MusicManager {
         
        $response = $soapWrapper->call('TranslatorEN2NL.TranslateEnglishToDutch',[new TranslateEnglishToDutchRequest($lyrics)]);
        $translated_text = $response->TranslateEnglishToDutchResult;
-       //Log::info($translated_text);
-       /*
-       $text1 = ltrim($translated_text,"[ \"");
-       $text2 = rtrim($text1,"\" ]");
-        */
        return $translated_text;
-       //return preg_replace("/\[ \"/","",$translated_text);
     }
     
+    /**
+     * Get the five most relevant results for a given youtube search
+     * @param string $song The song to search for
+     * @param string $artist The artist to search for
+     * @return array List containing search results
+     */
     static function getYoutubeData($song, $artist)
     {
         $query = $artist." ".$song; 
@@ -412,6 +414,11 @@ class MusicManager {
         return $response->items;
     }
     
+    /**
+     * For a given youtube ID, get the embedded youtube HTML player
+     * @param string $youtube_id The given youtube ID
+     * @return string HTML embedded youtube player
+     */
     static function getEmbeddedHTMLYoutube($youtube_id)
     {
         $api_key = "AIzaSyB5gEyBbMqLJABP1PgfHycdTwHmTHCkpBI";
@@ -477,6 +484,11 @@ class MusicManager {
         return FALSE;
     }
     
+    /**
+     * Check is an artist is stored in the database and already has an image associated with him
+     * @param type $artist
+     * @return type
+     */
     static function isArtistInDatabaseAndHasImage($artist)
     {
         $number = Artist::where('name','=',$artist)->where('img_url','not','')->count();
@@ -491,11 +503,14 @@ class MusicManager {
         return $status;
     }
     
+    /**
+     * Function to find and all possible songs to an album
+     * @param string $album Name of the album
+     * @param string $artist Name of the artist
+     * @return string Result of adding the songs
+     */
     static function addSongsToAlbum($album, $artist)
     {
-        //$album_url = urlencode($album);
-        //$artist_url = urlencode($artist);
-        
         $url = 'http://ws.audioscrobbler.com/2.0/?method=album.getInfo&api_key=1c29722debda9b327250154f911004b6&artist='.rawurlencode($artist).'&album='.rawurlencode($album).'&format=json';
         
         try

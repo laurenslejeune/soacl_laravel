@@ -12,16 +12,6 @@ use App\MusicManager;
 class SongAPIController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * Guide: different urls result in different results:
-     * .../api/songs                                                                => Gives all songs
-     * .../api/songs?song=How You Remind Me                                         => Gives all songs containing the specified title
-     * .../api/songs?song=How You Remind Me&artist=nickelback                       => Gives the required song by the specified artist
-     * .../api/songs?song=How You Remind Me&album=Silver Side Up                    => Gives the required song in the specified album
-     * .../api/songs?song=How You Remind Me&artist=nickelback&album=Silver Side Up  => Gives the required song of the specified artist and album
-     * 
-     * 
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)

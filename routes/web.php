@@ -49,7 +49,7 @@ Route::get('/users/',function()
 });
 /*
  * All routes below this point serve to connect to an API from JS. They are used
- * to add an API key to the HTTP request. This way, not API keys have to hard coded
+ * to add an API key to the HTTP request. This way, no API keys have to hard coded
  * in JS, which would be publicly available.
  */
 //Adding API key to a search:
