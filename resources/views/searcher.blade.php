@@ -8,41 +8,51 @@
 <script type="text/javascript">
     
     let keyadder_lastfm = "../add_api_key/lastfm";
-    //let keyadder_lastfm = "http://localhost/mediamanager/public/add_api_key/lastfm"; 
     let keyadder_local = "../add_api_key/local/";
-    //let keyadder_local = "http://localhost/mediamanager/public/add_api_key/local/";
-    //let local_api = "http://127.0.0.1:8000/api/";
     
+    /**
+     * Check if the artist needs to be included in the search
+     * @return true if the artist needs to be included
+     */
     function includeArtist()
     {
         if(!document.getElementById("includeArtist"))
         {
-            //if(document.getElementById("includeArtist")) is true if not null/undefined/...
             return false;
         }
         return document.getElementById("includeArtist").checked;
     }
     
+    /**
+     * Check if the album needs to be included in the search
+     * @return true if the album needs to be included
+     */
     function includeAlbum()
     {
         if(!document.getElementById("includeAlbum"))
         {
-            //if(document.getElementById("includeArtist")) is true if not null/undefined/...
             return false;
         }
         return document.getElementById("includeAlbum").checked;
     }
     
+    /**
+     * Check if the song needs to be included in the search
+     * @return true if the song needs to be included
+     */
     function includeSong()
     {
         if(!document.getElementById("includeSong"))
         {
-            //if(document.getElementById("includeArtist")) is true if not null/undefined/...
             return false;
         }
         return document.getElementById("includeSong").checked;
     }
     
+    /**
+     * Check if lastfm needs to be searched
+     * @return true if lastfm needs to be searched
+     */
     function useLastFM()
     {
         if(!document.getElementById("lastfm"))
@@ -52,6 +62,10 @@
         return document.getElementById("lastfm").checked;
     }
    
+    /**
+     * Check if the local database needs to be searched
+     * @return true if the local database needs to be searched
+     */
     function useLocalDatabase()
     {
         if(!document.getElementById("local"))
@@ -61,6 +75,10 @@
         return document.getElementById("local").checked;
     }
     
+    /**
+     * Check if search results (from lastfm) need to be saved in the local database
+     * @return true if they need to be saved
+     */
     function saveResults()
     {
         if(!document.getElementById("save"))
@@ -70,6 +88,9 @@
         return document.getElementById("save").checked;
     } 
     
+    /**
+     * Search LastFM for songs
+     */
     function searchLastFmSong()
     {
         if(includeArtist() && includeSong())
@@ -78,7 +99,6 @@
             let artistname = document.getElementById("artistname").value;
             
             let lastfm_url = "method=track.search&track=" + songtitle + "&artist=" + artistname +"&format=json";
-            //let url = "http://ws.audioscrobbler.com/2.0/?method=track.search&track=" + songtitle + "&artist=" + artistname +  "&api_key=1c29722debda9b327250154f911004b6&format=json";
             let url = keyadder_lastfm + "/" + lastfm_url;
 
             fetch(url).then(response=>
@@ -112,7 +132,6 @@
             let songtitle = document.getElementById("songtitle").value;
             
             let lastfm_url = "method=track.search&track=" + songtitle +"&format=json";
-            //let url = "http://ws.audioscrobbler.com/2.0/?method=track.search&track=" + songtitle + "&api_key=1c29722debda9b327250154f911004b6&format=json";
             let url = keyadder_lastfm + "/" + lastfm_url;
             fetch(url).then(response=>
             {
@@ -141,6 +160,9 @@
         }
     }
     
+    /**
+     * Search LastFM for artists
+     */
     function searchLastFmArtist()
     {
         let songtitle = document.getElementById("songtitle").value;
@@ -148,7 +170,6 @@
         if(includeArtist()&&includeSong())
         {
             
-            //let url = "http://ws.audioscrobbler.com/2.0/?method=track.search&track=" + songtitle + "&artist=" + artistname + "&api_key=1c29722debda9b327250154f911004b6&format=json";
             let lastfm_url = "method=track.search&track=" + songtitle +"&format=json" + "&artist=" + artistname;
             let url = keyadder_lastfm + "/" + lastfm_url;
             fetch(url).then(response=>
@@ -178,7 +199,6 @@
         }
         else
         {
-            //url = "http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=" + artistname + "&api_key=1c29722debda9b327250154f911004b6&format=json";
             let lastfm_url = "method=artist.search&format=json&artist=" + artistname;
             let url = keyadder_lastfm + "/" + lastfm_url;
             fetch(url).then(response=>
@@ -208,12 +228,14 @@
         }
     }
     
+    /**
+     * Search LastFM for albums
+     */
     function searchLastFmAlbum()
     {
         let albumname = document.getElementById("albumname").value;
         let songtitle = document.getElementById("songtitle").value;
         let artistname = document.getElementById("artistname").value;
-        //url = "http://ws.audioscrobbler.com/2.0/?method=album.search&album="+albumname+"&api_key=1c29722debda9b327250154f911004b6&format=json";
         
         if(includeArtist() && includeSong())
         {
@@ -276,9 +298,13 @@
         }
     }
     
+    /**
+     * Get lastfm information about the song (=track) of the specified artist
+     * @param string artist Name of the artist
+     * @param string song Name of the song
+     */
     function trackInfoLastFm(artist, song)
     {
-        //let url = 'http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=1c29722debda9b327250154f911004b6&artist='+artist+'&track='+song+'&format=json';
         
         let lastfm_url = "method=track.getInfo&format=json&artist="+artist+"&track="+song;
         let url = keyadder_lastfm + "/" + lastfm_url;
@@ -318,7 +344,6 @@
                     //Do not add a trailing "/" to the url, this causes errors
                     let post_url = keyadder_local + 'songs';
                     console.log("Posting to " + post_url);
-                    //fetch(local_api + 'songs/',
                     fetch(post_url,
                     {
                         method: 'POST',
@@ -341,9 +366,10 @@
     /*
     * 
     Search an album for the given artist and song, by first inquiring for the information of that artist and song.
-     * @param {type} artist
-     * @param {type} song
-     * @return {undefined}     */
+     * @param string artist Name of the artist
+     * @param string song Name of the song
+     *
+     */
     function trackInfoLastFmForAlbum(artist, song)
     {
         let lastfm_url = "method=track.getInfo&format=json&artist="+artist+"&track="+song;
@@ -382,9 +408,12 @@
         }); 
     }
     
+    /**
+    * Get the LastFM information about the given artist
+    * @param string artist Name of the artist
+     */
     function artistInfoLastFm(artist)
     {
-        //let url = 'http://ws.audioscrobbler.com/2.0/?method=artist.getInfo&api_key=1c29722debda9b327250154f911004b6&artist='+artist+'&format=json';
         let lastfm_url = "method=artist.getInfo&format=json&artist="+artist;
         let url = keyadder_lastfm + "/" + lastfm_url;
         fetch(url).then(response=>
@@ -410,14 +439,12 @@
             else
             {
                 let received_artist = response.artist;
-                //let title = received_artist.name;
                 let artistname = received_artist.name;
                 let img_url = received_artist.image[0]['#text'];
                 if(saveResults())
                 {
                     //Do not add a trailing "/" to the url, this causes errors
                     let post_url = keyadder_local + 'artists';
-                    //let post_url = local_api + 'artists/';
                     fetch(post_url,
                     {
                         method: 'POST',
@@ -438,9 +465,13 @@
        
     }
     
+    /**
+    * Get the LastFm info of the given album by the given artist
+    * @param string album Name of the album
+    * @param string artist Name of the artist
+    */
     function albumInfoLastFm(album, artist)
     {
-        //let url = "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=1c29722debda9b327250154f911004b6&album="+album+"&artist="+artist+"&format=json";
         let lastfm_url = "method=album.getinfo&format=json&album="+album+"&artist="+artist;
         let url = keyadder_lastfm + "/" + lastfm_url;
         fetch(url).then(response=>
@@ -466,7 +497,6 @@
             else
             {
                 let received_album = response.album;
-                //let title = received_artist.name;
                 let albumname = received_album.name;
                 let artistname = received_album.artist;
                 let img_url = received_album.image[2]['#text'];
@@ -474,7 +504,6 @@
                 {
                     //Do not add a trailing "/" to the url, this causes errors
                     let post_url = keyadder_local + 'albums';
-                    //let post_url = local_api + 'albums/';
                     fetch(post_url,
                     {
                         method: 'POST',
@@ -492,9 +521,12 @@
             }
         });
     }
+    
+    /*
+    * Search the local database for a song
+     */
     function searchLocalDatabaseSong()
     {
-        //let base = local_api;
         let base = keyadder_local;
         let url = base + "songs";
 
@@ -585,12 +617,13 @@
         
     }
     
+    /*
+    * Search the local databse for an artist
+     */
     function searchLocalDatabaseArtist()
     {
-        //let base = local_api + "/artists";
         let base = keyadder_local + "artists";
         let url = base;
-        //let url = "http://127.0.0.1:8000/api/artists";
 
         if(includeAlbum())
         {
@@ -638,12 +671,13 @@
         
     }
     
+    /**
+    * Search the local database for an album
+    */
     function searchLocalDatabaseAlbum()
     {
-        //let base = "http://127.0.0.1:8000/api/";
         let base = keyadder_local;
         let url = base + "albums";
-        //let url = base + "albums";
 
         if(includeAlbum())
         {
@@ -710,6 +744,9 @@
         });
     }
     
+    /**
+     * Search for songs
+     */
     function searchSongs()
     {
         let initialString = "<thead><tr><th>Source</th><th>Title</th><th>Artist</th><th>Album</th></tr></thead><tbody id=\"results\"></tbody>";
@@ -724,6 +761,9 @@
         }
     }
     
+    /**
+     * Search for artists
+     */
     function searchArtists()
     {
         document.getElementById("base_table").innerHTML = "<thead><tr><th>Source</th><th>Artist</th><th>Image</th></tr></thead><tbody id=\"results\"></tbody>";
@@ -737,6 +777,9 @@
         }
     }
     
+    /**
+     * Search for albums
+     */
     function searchAlbums()
     {
         document.getElementById("base_table").innerHTML = "<thead><tr><th>Source</th><th>Album</th><th>Artist</th><th>Image</th></tr></thead><tbody id=\"results\"></tbody>";
@@ -750,16 +793,27 @@
         }
     }
     
+    /**
+     * Check if enough types are included (it is impossible to search for something, if you cannot include song, album or artist)
+     * @type true if at least one type is included
+     */
     function isSufficientlyIncludedType()
     {
         return includeArtist() || includeAlbum() || includeSong();
     }
     
+    /**
+     * Check if sufficient sources are included (it is impossible to search something that is not specified)
+     * @return true if at least one source is specified
+     */
     function isSufficientlyIncludedSource()
     {
         return useLastFM() || useLocalDatabase();
     }
     
+    /**
+     * Search for the specified items
+     */
     function search()
     {
         //Check that at least one of the three search parameters (song, artist, album) is included
@@ -797,6 +851,27 @@
     }
 </script>
 
+<div>
+    <h5>Instruction</h5>
+    <p>Search online for songs, artists and albums by specifying the "Last.fm" source. Due to the implementation of Last.fm, only the following search
+    operations are implemented</p>
+    <p>Searching for songs:</p>
+    <ul>
+        <li>Song + Artist</li>
+        <li>Song</li>
+    </ul>
+    <p>Searching for artists:</p>
+    <ul>
+        <li>Song + Artist</li>
+        <li>Artist</li>
+    </ul>
+    <p>Searching for albums:</p>
+    <ul>
+        <li>Song + Artist</li>
+        <li>Album</li>
+    </ul>
+    <p>Searching the local database can use any combination of search parameters for songs, artists and albums</p>
+</div>
 <p>
     If only one song corresponding to the given title is in the database, it will be returned. Otherwise, a list of possible songs will be returned.
 </p>
