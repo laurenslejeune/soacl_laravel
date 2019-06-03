@@ -6,8 +6,8 @@
 
 @section('inhoud')
 
+<a href="../{{$id}}">Click here to return to the artist view</a>
 <table>
-    
     <tr>
             <th>
                 Type
