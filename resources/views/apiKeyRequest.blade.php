@@ -12,6 +12,10 @@
     let store_user = "./add";
     let user_api = "./getAPI";
     
+    /**
+     * Check if the provided password is correct
+     * @return {Boolean} true if the password is correct
+     */
     function correctPassword()
     {
         let pass1 = document.getElementById("pass1").value;
@@ -38,8 +42,9 @@
         }
     }
     
-    
-    
+    /**
+     * Store a user in the database
+     */
     function storeUser()
     {
         if(correctPassword())
@@ -130,7 +135,10 @@
             });
         }
     }
-            
+    
+    /**
+     * For the given email address and password, show the corresponding api key as an alert
+     */
     function getAPIKey()
     {
         let pass = document.getElementById("pass").value;
@@ -155,6 +163,7 @@
             else
             {
                 console.log(response);
+                alert("User not found");
                 return Promise.reject("User not stored");
             }
         }).then(response=>

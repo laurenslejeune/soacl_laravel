@@ -46,7 +46,7 @@ class ArtistController extends Controller
      */
     public function show($id)
     {
-        return view('artistview')->with('albums',Artist::find($id)->albums()->get())
+        return view('singleArtistview')->with('albums',Artist::find($id)->albums()->get())
                                  ->with('artist',Artist::find($id));
     }
 
@@ -98,7 +98,7 @@ class ArtistController extends Controller
         //str_replace('%3A', ':', $url);
         Artist::where('id',$id)->first()->update(['wikipedia_url'=>$url]);
         
-        return view('artistview')->with('albums',Artist::find($id)->albums()->get())
+        return view('singleArtistview')->with('albums',Artist::find($id)->albums()->get())
                                  ->with('artist',Artist::find($id));
     }
 

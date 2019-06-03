@@ -7,6 +7,9 @@
 <script type="text/javascript">
 
     let local_api = "../add_api_key/local/";
+    /**
+     * Delete the specified playlist
+     */
     function deletePlaylist(playlist_id)
     {
         let url = local_api + 'playlists/' + playlist_id;
